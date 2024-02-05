@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_range.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: avoloshchuk <avoloshchuk@fairwaydev.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,34 +10,31 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h> // For malloc
+#include <stdlib.h>
 
-char *ft_strdup(char *src) {
-    int len = 0;
-    while (src[len]) // Calculate the length of the source string
-        len++;
-    
-    // Allocate memory for the duplicate string, including the null terminator
-    char *dup = (char *)malloc((len + 1) * sizeof(char));
-    if (dup == NULL) // Check if the memory allocation was successful
-        return NULL;
-    
-    // Copy the source string into the duplicate string using a while loop
-    int i = 0;
-    while (i <= len) { // <= to include the null terminator
-        dup[i] = src[i];
+int *ft_range(int min, int max)
+{
+    int *range;
+    int i;
+    int size;
+
+    if (min >= max)
+        return (NULL);
+    size = max - min;
+    range = (int *)malloc(sizeof(*range) * size);
+    if (!range)
+        return (NULL);
+    i = 0;
+    while (i < size)
+    {
+        range[i] = min + i;
         i++;
     }
-    
-    return dup; // Return the duplicate string
+    return (range);
 }
 
-#include <stdio.h>
 int main(int argc, char const *argv[])
 {
-	char	*res;
-
-	res = ft_strdup("Hello mac");
-	printf("%s\n", res);
-	return 0;
+    /* code */
+    return 0;
 }
